@@ -1,0 +1,225 @@
+/***********
+	页面样式
+************/
+*{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+
+}
+
+
+html{
+	background-color: 	#191970;
+	font-size: 62.5%;
+	color: #222;
+}
+
+ul{
+	margin: 0;
+	padding: 0;
+}
+
+li{
+	list-style: none;
+}
+
+input{
+	border: 0;
+}
+
+/*===========
+	header的样式
+============*/
+
+header{
+	width: 98%;
+	margin: 0 auto;
+}
+
+header h3{
+	text-align: center;
+	font-size: 5rem;
+	color: #fff;
+	margin-top: 1.5rem;
+}
+
+/*===============
+	content的基本样式
+=================*/
+.content{
+	width: 60%;
+	margin: 0 auto;
+	position: relative;
+}
+
+
+.content .add_task input:first-child{
+	border: 0;
+	padding: 1rem;
+	border-radius: 0.4rem;
+	width: 85%;
+	box-shadow: 0 0 0.4rem #ccc;
+
+	background: #DCDCDC;
+}
+
+.content .add_task .input_text:hover,
+.content .add_task .input_text:focus,
+.content .add_task .input_text:active
+{
+	background: #fff;
+	
+}
+
+.content .add_task .input_text:focus{
+	border: 2px solid 	#E9967A;
+}
+
+.content .add_task .input_submit{
+	border: 0;
+	width: 13.7%;
+	padding: 0.85rem;
+	border-radius: 0.4rem;
+	background: #7FFFD4;
+	font-size: 1.2rem;
+	font-weight: bold; 
+
+	cursor: pointer;
+
+	-webkit-transition: background 1000ms;
+	-moz-transition: background 1000ms;
+	-ms-transition: background 1000ms;
+	-o-transition: background 1000ms;
+	transition: background 1000ms;
+}
+
+.content .add_task .input_submit:hover{
+	background: #ccc;
+}
+
+.content .add_task input{
+	margin: 0.4rem 0 0.4rem 0;
+}
+
+.cont-tab{
+	width: 100%;
+}
+.content .cont-tab ul{
+	margin: 0;
+	padding: 0;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.content .cont-tab li{
+	background: #fff;
+	padding: 1rem;
+	border-radius: 0.4rem;
+	cursor: pointer;
+	box-shadow: 0 0rem 0.4rem #ccc;
+
+	-webkit-transition: background 100ms;
+	-moz-transition: background 100ms;
+	-ms-transition: background 100ms;
+	-o-transition: background 100ms;
+	transition: background 100ms;
+}
+
+.content .cont-tab li + li{
+	margin: 0.2rem 0 0 0;
+}
+
+.content .cont-tab li:hover{
+	background: #C0C0C0;
+}
+
+.content .cont-tab li .del_det{
+	float: right;
+	color: #999;
+}
+
+.content .cont-tab li .action:hover{
+	color: #333;
+}
+
+.content .cont-tab li .data_content{
+	margin-left: 10px;
+}
+
+/*细节显示样式*/
+.cont_detail{
+	position: absolute;
+	width: 40%;
+	height: 200px;
+	bottom: 0;
+	right: 0;
+	background: #fff;
+	text-align: center;
+	padding: 1rem;
+	border-radius: 0.4rem;
+
+	display: none;
+}
+
+.cont_detail .detail_content span{
+	font-size: 1.2rem;
+	font-weight: 900;
+	margin-bottom: 0.8rem;
+}
+
+.cont_detail .detail_desc textarea{
+	width: 100%;
+	height: 8rem;
+	border-radius: 0.4rem;
+	padding: 1rem;
+	background: #ccc;
+}
+
+.cont_detail .detail_date input:first-child{
+	width: 100%;
+	padding: 1rem;
+	border-radius: 0.4rem;
+	background: #ccc;
+
+}
+
+/*.cont-detail .detail-date input:last-child{
+	width: 28%;
+	padding: 1rem;
+	font-size: 1.2rem;
+}*/
+
+.cont_detail .detail_date input:hover,
+.cont_detail .detail_date input:focus,
+.cont_detail .detail_desc textarea:hover,
+.cont_detail .detail_desc textarea:focus{
+	background: #eee;
+}
+
+.cont_detail_mask{
+	position: fixed;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(30,30,30,0.6);
+	border-radius: 0.4rem;
+
+	display: none;
+}
+
+.cont_detail input[name=content]{
+	border:1px solid rgba(30,30,30,0.5);
+	border-radius: 0.4rem;
+	background-color: rgba(30,30,30,0.2);
+	margin-bottom:0.4rem;
+}
+
+.cont_detail button{
+	border-radius: 0.4rem;
+	background-color: rgba(30,30,30,0.2);
+	margin-top: 0.4rem;
+}

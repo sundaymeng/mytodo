@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>myToDo</title>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+	<header>
+		<h3>我的ToDo</h3>
+	</header>
+
+	<div class="content">
+		<!-- 提交任务部分 -->
+		<form class="add_task">
+			<input name="content" type="text" class="input_text" placeholder="e.g. 下午记得打酱油凹"
+			autofocus autocomplete="off" 
+			>
+			<!-- <input type="button" class="input_submit" value="submit"> -->
+			<button class="input_submit" type="submit">submit</button>
+		</form>
+		<!-- 任务显示部分 -->
+		<div class="cont-tab">
+
+			<ul id="show_area">	<!-- 任务开始 -->
+				<!-- <li>
+					<span><input type="checkbox" /></span>
+					<span>我的记录</span>
+					<span>delete</span>
+					<span>detail</span>
+				</li> -->
+			</ul>
+		</div>
+
+		<div class="cont_detail_mask">
+		</div>
+		<!-- 任务细节显示 -->
+		<div class="cont_detail">
+			<!-- <div class="detail_content"> 
+				<span>打酱油！买菜</span>
+			</div>
+
+			<div class="detail_desc">	
+			<textarea></textarea>
+			</div>
+
+			<div class="detail_date">
+				<input type="date">
+				
+			</div> -->
+			<div><button type='submit'>更新</button></div>
+		</div> 
+		
+	</div>
+<script src="js/jquery/jquery.js"></script>
+<script src="js/main.js"></script>
+<script src="js/store.min.js"></script>
+</body>
+</html>
+
