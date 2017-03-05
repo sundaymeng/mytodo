@@ -154,7 +154,7 @@ header h3{
 	position: absolute;
 	width: 40%;
 	height: 200px;
-	bottom: 0;
+	bottom: 10px;
 	right: 0;
 	background: #fff;
 	text-align: center;
@@ -222,4 +222,21 @@ header h3{
 	border-radius: 0.4rem;
 	background-color: rgba(30,30,30,0.2);
 	margin-top: 0.4rem;
+}
+
+.li_content.completed{
+	color: #aaa;
+	/*background: rgba(255,255,255,0.7);*/
+	opacity: 0.6;
+}
+
+.li_content.completed:after{
+	content: " ";
+    height: 1px;
+    background: #aaa;
+    width: 98%;
+    position: relative;
+    top: -8px;
+    display: block;
+    float: right;
 }

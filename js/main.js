@@ -2,11 +2,12 @@ $(document).ready(function(){
 	var $form_add_task=$('.add_task');
 	var $cont_detail_mask=$('.cont_detail_mask');
 	var $cont_detail=$('.cont_detail');
-
+	
 	var $delete_task;
 	var $detail_task;
 	var $update_form;
 	var $detail_task_content;
+	var $checkbox_complete;
 
 	var task_list=[];//创建任务列表数组
 	var current_index;
@@ -63,6 +64,27 @@ $(document).ready(function(){
 		});
 	}
 
+	function listen_checkbox_complete(){
+		$checkbox_complete.on('click',function(){
+			var $this=$(this);
+			var is_complete=$this.is(':checked');
+			var index=$this.parent().parent().data('index');
+			//update_task(index, {complete:is_complete});
+			var item=get(index);
+			if(item.complete){
+				update_task(index, {complete:false});
+				//$this.attr('checked', true);	//attr()方法设置或返回被选元素的属性值
+			} else{
+				update_task(index, {complete:true});
+				//$this.attr('checkes', false);
+			}
+		});
+	}
+
+	function get(index){
+		return store.get('task_list')[index];
+	}
+
 	/*存入任务事件*/
 	function add_task_list(new_task){
 		task_list.push(new_task);
@@ -98,7 +120,7 @@ $(document).ready(function(){
 	function render_task_tpl(data, index){
 		if(!data || !index) return;
  		var single_task_item='<li class="li_content" data-index="' + index + '">' +
-					'<span><input type="checkbox" /></span>' +
+					'<span><input class="complete" type="checkbox"' + (data.complete? 'checked':'') + '/></span>' +
 					'<span class="data_content">' + data.content + '</span>' +
 					'<span class="del_det">' +
 					'<span class="action delete"> 删除</span>' +
@@ -113,16 +135,33 @@ $(document).ready(function(){
 	function render_task_list(){
 		var $show_area=$('#show_area');
 		$show_area.html('');
+		var complete_items=[];
+
 		for(var i=0;i<task_list.length;i++){
-			var $single_task=render_task_tpl(task_list[i], i);
+			var item=task_list[i];
+			if(item && item.complete)
+				complete_items[i]=item;
+			else{
+				var $single_task=render_task_tpl(task_list[i], i);
+			}
+			
 			$show_area.prepend($single_task);
+		}
+
+		for(var j=0; j<complete_items.length; j++){
+			$task=render_task_tpl(complete_items[j], j);
+			if(!$task) continue;
+			$task.addClass('completed');
+			$show_area.append($task);
 		}
 
 		$delete_task=$('.action.delete');
 		$detail_task=$('.action.detail');
+		$checkbox_complete=$('.li_content .complete');
 
 		listen_task_delete();	//每次添加一个删除监听事件
 		listen_task_detail();	//每次添加一个细节监听事件
+		listen_checkbox_complete();
 	}
 
 	/**显示细节功能区样式*/
@@ -144,9 +183,8 @@ $(document).ready(function(){
 		if(index === undefined || !task_list[index]) return;
 		var item=task_list[index];
 
-		console.log('item', item);
 
-		var tpl = '<form>' +
+		var tpl = '<form class="form">' +
 				'<div class="detail_content">' +	
 				'<span>' + item.content + '</span>' +
 				'</div>' + 
@@ -157,11 +195,12 @@ $(document).ready(function(){
 					'<textarea name="desc">' + (item.desc || '') + '</textarea>' +
 				'</div>' +
 				'<div class="detail_date">' +
-					'<input type="date" name="remind_date" value="'+item.remind_date + '">' +  
+					'<input class="datetime" type="date" name="remind_date" value="'+(item.remind_date || '') + '">' +  
 				'</div>' +
 				'<div><button type="submit">更新</button></div>' +
 		 '</form>' ;
 
+		 //$('.form .datetime').datetimepicker();
 		 $cont_detail.html('');
 		 $cont_detail.html(tpl);
 		 $update_form=$cont_detail.find('form');
@@ -178,7 +217,6 @@ $(document).ready(function(){
 		 	data.content=$(this).find('[name=content]').val();
 		 	data.desc=$(this).find('[name=desc]').val();
 		 	data.remind_date=$(this).find('[name=remind_date]').val();
-		 	//console.log('data',data);
 		 	update_task(index, data);
 		 	hide_task_detail();
 		 });
@@ -187,16 +225,12 @@ $(document).ready(function(){
 	function update_task(index, data){
 		if(index === undefined || !task_list[index]) return;
 
-		task_list[index] = data;
+		task_list[index] = $.extend({},task_list[index],data);
 		refresh_task_list();
-		//console.log('task_list[index]',task_list[index]);
+		console.log('task_list[index]',task_list[index]);
 	}
 
 })
 
-// ;(function(){
-// 	'use strict';
-// 	});
-// })();
-// 
-// 
+
+
